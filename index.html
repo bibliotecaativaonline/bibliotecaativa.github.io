@@ -1,13 +1,227 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Ativa</title>
+    <title>Biblioteca Online | Seu Portal Literário</title>
+    <meta name="description" content="Explore milhares de livros na nossa biblioteca online. Encontre seu próximo livro favorito!">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Bem-vindo ao site Biblioteca Ativa!</h1>
-    <p>Por enquanto não temos livros disponíveis, mas em breve terão.</p>
-    
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-book-open"></i> Biblioteca Online</h1>
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" class="nav-link active"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-book"></i> Catálogo</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-calendar-alt"></i> Eventos</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                    <li class="auth-section">
+                        <button id="loginBtn" class="btn-auth">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                        <div id="userDropdown" class="user-dropdown hidden">
+                            <a href="#"><i class="fas fa-user"></i> Perfil</a>
+                            <a href="#"><i class="fas fa-bookmark"></i> Meus Livros</a>
+                            <a href="#"><i class="fas fa-calendar-check"></i> Agendamentos</a>
+                            <button id="logoutBtn" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</button>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="container">
+                <h2>Descubra seu próximo livro favorito</h2>
+                <p>Explore nossa coleção com milhares de títulos</p>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Pesquise por título, autor ou gênero..." aria-label="Campo de pesquisa">
+                    <button id="searchBtn" aria-label="Pesquisar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="genreFilter"><i class="fas fa-tags"></i> Gênero:</label>
+                        <select id="genreFilter" aria-label="Filtrar por gênero">
+                            <option value="">Todos</option>
+                            <!-- Populado via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="ratingFilter"><i class="fas fa-star"></i> Avaliação:</label>
+                        <select id="ratingFilter" aria-label="Filtrar por avaliação">
+                            <option value="">Qualquer</option>
+                            <option value="4">4+ Estrelas</option>
+                            <option value="3">3+ Estrelas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="books-section">
+            <div class="container">
+                <h2 class="section-title">Livros em Destaque</h2>
+                <div class="loading-indicator hidden">
+                    <div class="spinner"></div>
+                    <p>Carregando livros...</p>
+                </div>
+                <div class="books-grid" id="booksContainer">
+                    <!-- Livros serão inseridos aqui via JavaScript -->
+                </div>
+                <div class="pagination">
+                    <button id="prevPage" class="btn-pagination" disabled>
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <span id="pageInfo">Página 1</span>
+                    <button id="nextPage" class="btn-pagination">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book-open"></i> Biblioteca Online</h3>
+                    <p>Seu portal para o mundo da leitura digital</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Catálogo</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Eventos</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Doações</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contato@bibliotecaonline.com</li>
+                        <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Biblioteca Online. Todos os direitos reservados.</p>
+                <div class="legal-links">
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Fechar modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="username">E-mail ou Usuário</label>
+                    <input type="text" id="username" required aria-describedby="usernameHelp">
+                    <small id="usernameHelp">Digite seu e-mail ou nome de usuário</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required>
+                    <button type="button" class="show-password" aria-label="Mostrar senha">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe"> Lembrar de mim
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+                <button type="submit" class="btn-submit">Entrar</button>
+                <div class="auth-footer">
+                    <p>Não tem uma conta? <a href="#" id="showRegister">Registre-se</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Fechar modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Criar Conta</h2>
+            </div>
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="regName">Nome Completo</label>
+                    <input type="text" id="regName" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">E-mail</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regUsername">Nome de Usuário</label>
+                    <input type="text" id="regUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Senha</label>
+                    <input type="password" id="regPassword" required>
+                    <button type="button" class="show-password" aria-label="Mostrar senha">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">Confirmar Senha</label>
+                    <input type="password" id="regConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Registrar</button>
+                <div class="auth-footer">
+                    <p>Já tem uma conta? <a href="#" id="showLogin">Faça login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js" type="module"></script>
+    <script src="js/ui.js" type="module"></script>
+    <script src="js/auth.js" type="module"></script>
 </body>
 </html>
